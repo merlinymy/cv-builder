@@ -2,7 +2,7 @@ import "../styles/resume.css";
 
 export function Resume({ resumeData }) {
   return (
-    <div className="resume">
+    <div className="resume hide">
       {resumeData.name && <div className="name">{resumeData.name}</div>}
       {resumeData.location && (
         <div className="location">{resumeData.location}</div>

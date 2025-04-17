@@ -1,3 +1,5 @@
+import { Input } from "./Input";
+import { Textarea } from "./Textarea";
 export function GeneralInfo({
   generalInfoFields,
   generalInfoState,
@@ -15,22 +17,18 @@ export function GeneralInfo({
           >
             <label htmlFor={name}>{label}</label>
             {type === "textfield" ? (
-              <textarea
+              <Textarea
+                data={generalInfoState}
                 name={name}
-                id={name}
-                value={generalInfoState[name]}
-                onChange={setGeneralInfoState}
-                className="border-1 border-amber-50 rounded-[5px] h-[6rem] p-[0.5rem]"
-              ></textarea>
+                setState={setGeneralInfoState}
+              ></Textarea>
             ) : (
-              <input
+              <Input
                 type={type}
-                id={name}
                 name={name}
-                value={generalInfoState[name]}
-                onChange={setGeneralInfoState}
-                className="border-1 border-amber-50 rounded-[5px] h-[2rem] p-[0.5rem]"
-              />
+                data={generalInfoState}
+                setData={setGeneralInfoState}
+              ></Input>
             )}
           </div>
         ))}

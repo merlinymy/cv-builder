@@ -1,3 +1,3 @@
-export function Label({ inputName }) {
-  return <label htmlFor={inputName}>inputName</label>;
+export function Label({ inputId, inputName }) {
+  return <label htmlFor={inputId}>{inputName}</label>;
 }
