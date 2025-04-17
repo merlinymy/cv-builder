@@ -7,7 +7,6 @@ export function WorkExperience({
   workInfoFields,
   addNewCard,
 }) {
-  console.log(workInfoState);
   return (
     <div>
       <p>Work Experience</p>

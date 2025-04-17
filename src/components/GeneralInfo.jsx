@@ -20,14 +20,14 @@ export function GeneralInfo({
               <Textarea
                 data={generalInfoState}
                 name={name}
-                setState={setGeneralInfoState}
+                handleData={setGeneralInfoState}
               ></Textarea>
             ) : (
               <Input
                 type={type}
                 name={name}
                 data={generalInfoState}
-                setData={setGeneralInfoState}
+                handleData={setGeneralInfoState}
               ></Input>
             )}
           </div>

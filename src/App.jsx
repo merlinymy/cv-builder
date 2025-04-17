@@ -43,8 +43,27 @@ function App() {
 
   const handleGeneralInfoState = function (e) {
     const { name, value } = e.target;
-    setGeneralInfoState((prev) => {
-      return { ...prev, [name]: value };
+    // setGeneralInfoState((prev) => {
+    //   return { ...prev, [name]: value };
+    // });
+    setGeneralInfoState({ ...generalInfoState, [name]: value });
+  };
+
+  const handleWorkExperienceState = function (e) {
+    const { name, value, type } = e.target;
+    const stateid = e.target.getAttribute("stateid");
+    console.log(e.target);
+    setWorkInfoState((prev) => {
+      console.log(prev);
+      const newState = prev.map((ele) => {
+        if (ele.id === stateid) {
+          return type === "checkbox"
+            ? { ...ele, [name]: e.target.checked }
+            : { ...ele, [name]: value };
+        }
+        return ele;
+      });
+      return newState;
     });
   };
 
@@ -59,7 +78,7 @@ function App() {
       ...prev,
       {
         id: crypto.randomUUID(),
-        name: "",
+        companyName: "",
         roleTitle: "",
         startDate: "",
         endDate: "",
@@ -83,14 +102,14 @@ function App() {
         <GeneralInfo
           generalInfoFields={generalInfoFields}
           generalInfoState={generalInfoState}
-          setGeneralInfoState={setGeneralInfoState}
+          setGeneralInfoState={handleGeneralInfoState}
         >
           <Savebutton saveChanges={saveChanges}></Savebutton>
         </GeneralInfo>
         <Divider></Divider>
         <WorkExperience
           workInfoState={workInfoState}
-          setWorkInfoState={setWorkInfoState}
+          setWorkInfoState={handleWorkExperienceState}
           workInfoFields={workInfoFields}
           addNewCard={addNewCard}
         ></WorkExperience>

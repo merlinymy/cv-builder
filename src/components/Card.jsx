@@ -1,6 +1,7 @@
 import { Label } from "./Label";
 import { Input } from "./Input";
 import { Textarea } from "./Textarea";
+import { Checkbox } from "./Checkbox";
 
 export function Card({ workInfoState, setWorkInfoState, workInfoFields }) {
   const generateForm = function (field, state) {
@@ -9,20 +10,32 @@ export function Card({ workInfoState, setWorkInfoState, workInfoFields }) {
         <Input
           type={field.type}
           name={field.name}
-          data={state[field.name]}
-          setData={handleChange}
+          stateId={state.id}
+          data={state}
+          handleData={setWorkInfoState}
         ></Input>
       );
     } else if (field.type === "textarea") {
       return (
-        <Textarea data={workInfoState} handleChange={handleChange}></Textarea>
+        <Textarea
+          data={state}
+          name={field.name}
+          stateId={state.id}
+          handleData={setWorkInfoState}
+        ></Textarea>
+      );
+    } else if (field.type === "checkbox") {
+      return (
+        <Checkbox
+          name={field.name}
+          data={state}
+          stateId={state.id}
+          handleData={setWorkInfoState}
+        ></Checkbox>
       );
     }
   };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setWorkInfoState((prev) => [...prev]);
-  };
+
   return (
     <div className="border-1 border-amber-50">
       {workInfoState.map((state) => {
