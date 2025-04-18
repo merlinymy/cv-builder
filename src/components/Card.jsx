@@ -9,9 +9,7 @@ export function Card({
   workInfoState,
   setWorkInfoState,
   workInfoFields,
-  addNewPoint,
-  removeBullet,
-  updatePoint,
+  workOrProject,
 }) {
   const handleWorkExperienceState = function (e) {
     const { name, value, type } = e.target;
@@ -61,6 +59,56 @@ export function Card({
   };
   const removeExperience = (id) => {
     setWorkInfoState((prev) => prev.filter((state) => state.id !== id));
+  };
+
+  const addNewPoint = (id) => {
+    setWorkInfoState((prev) =>
+      prev.map((state) =>
+        state.id === id
+          ? {
+              ...state,
+              bulletPoints: [
+                ...state.bulletPoints,
+                {
+                  id: crypto.randomUUID(),
+                  content: "",
+                },
+              ],
+            }
+          : state,
+      ),
+    );
+  };
+
+  const removeBullet = (stateId, pointId) => {
+    setWorkInfoState((prev) =>
+      prev.map((state) =>
+        state.id === stateId
+          ? {
+              ...state,
+              bulletPoints: state.bulletPoints.filter(
+                (point) => point.id !== pointId,
+              ),
+            }
+          : state,
+      ),
+    );
+  };
+
+  const updatePoint = (stateId, pointId, newPoint) => {
+    setWorkInfoState((prev) => {
+      const newState = prev.map((state) =>
+        state.id === stateId
+          ? {
+              ...state,
+              bulletPoints: state.bulletPoints.map((point) =>
+                point.id === pointId ? { ...point, content: newPoint } : point,
+              ),
+            }
+          : state,
+      );
+      return newState;
+    });
   };
   return (
     <div className="flex flex-col gap-4">

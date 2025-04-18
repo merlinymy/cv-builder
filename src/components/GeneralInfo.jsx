@@ -6,6 +6,10 @@ export function GeneralInfo({
   setGeneralInfoState,
   children,
 }) {
+  const handleGeneralInfoState = function (e) {
+    const { name, value } = e.target;
+    setGeneralInfoState({ ...generalInfoState, [name]: value });
+  };
   return (
     <div>
       <p className="text-2xl">General Info</p>
@@ -20,14 +24,14 @@ export function GeneralInfo({
               <Textarea
                 data={generalInfoState[name]}
                 name={name}
-                handleData={setGeneralInfoState}
+                handleData={handleGeneralInfoState}
               ></Textarea>
             ) : (
               <Input
                 type={type}
                 name={name}
                 data={generalInfoState}
-                handleData={setGeneralInfoState}
+                handleData={handleGeneralInfoState}
               ></Input>
             )}
           </div>

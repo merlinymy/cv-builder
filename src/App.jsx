@@ -10,7 +10,11 @@ import "./styles/app.css";
 import { Divider } from "./components/Divider";
 import { WorkExperience } from "./components/WorkExperience";
 import { Card } from "./components/Card";
-import { generalInfoFields, workInfoFields } from "./assets/dataSchema";
+import {
+  generalInfoFields,
+  workInfoFields,
+  projectInfoFields,
+} from "./assets/dataSchema";
 
 function App() {
   const [generalInfoState, setGeneralInfoState] = useState(() => {
@@ -25,77 +29,7 @@ function App() {
   });
 
   const [workInfoState, setWorkInfoState] = useState([]);
-
-  const handleGeneralInfoState = function (e) {
-    const { name, value } = e.target;
-    setGeneralInfoState({ ...generalInfoState, [name]: value });
-  };
-
-  const addNewCard = () => {
-    setWorkInfoState((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        companyName: "",
-        roleTitle: "",
-        startDate: "",
-        endDate: "",
-        isCurrent: false,
-        location: "",
-        bulletPoints: [],
-      },
-    ]);
-  };
-
-  const addNewPoint = (id) => {
-    setWorkInfoState((prev) =>
-      prev.map((state) =>
-        state.id === id
-          ? {
-              ...state,
-              bulletPoints: [
-                ...state.bulletPoints,
-                {
-                  id: crypto.randomUUID(),
-                  content: "",
-                },
-              ],
-            }
-          : state,
-      ),
-    );
-  };
-
-  const removeBullet = (stateId, pointId) => {
-    setWorkInfoState((prev) =>
-      prev.map((state) =>
-        state.id === stateId
-          ? {
-              ...state,
-              bulletPoints: state.bulletPoints.filter(
-                (point) => point.id !== pointId,
-              ),
-            }
-          : state,
-      ),
-    );
-  };
-
-  const updatePoint = (stateId, pointId, newPoint) => {
-    setWorkInfoState((prev) => {
-      const newState = prev.map((state) =>
-        state.id === stateId
-          ? {
-              ...state,
-              bulletPoints: state.bulletPoints.map((point) =>
-                point.id === pointId ? { ...point, content: newPoint } : point,
-              ),
-            }
-          : state,
-      );
-      return newState;
-    });
-  };
+  const [projectInfoState, setprojectInfoState] = useState([]);
 
   return (
     <div className="h-dvh flex-col flex items-center ">
@@ -110,19 +44,23 @@ function App() {
         <GeneralInfo
           generalInfoFields={generalInfoFields}
           generalInfoState={generalInfoState}
-          setGeneralInfoState={handleGeneralInfoState}
+          setGeneralInfoState={setGeneralInfoState}
         >
           <Savebutton></Savebutton>
         </GeneralInfo>
         <Divider></Divider>
         <WorkExperience
+          workOrProject="work"
           workInfoState={workInfoState}
           setWorkInfoState={setWorkInfoState}
           workInfoFields={workInfoFields}
-          addNewCard={addNewCard}
-          addNewPoint={addNewPoint}
-          removeBullet={removeBullet}
-          updatePoint={updatePoint}
+        ></WorkExperience>
+        <Divider></Divider>
+        <WorkExperience
+          workOrProject="project"
+          workInfoState={projectInfoState}
+          setWorkInfoState={setprojectInfoState}
+          workInfoFields={projectInfoFields}
         ></WorkExperience>
         <Divider></Divider>
         <Footer></Footer>
