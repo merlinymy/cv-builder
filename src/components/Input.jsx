@@ -7,7 +7,7 @@ export function Input({ type, name, data, handleData, stateId }) {
       name={name}
       value={data[name]}
       onChange={handleData}
-      className="border rounded h-[2rem] p-[0.5rem]"
+      className="border rounded h-[2rem] p-[0.5rem] placeholder-opacity-0	"
     />
   );
 }

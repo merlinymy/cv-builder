@@ -18,7 +18,7 @@ export function GeneralInfo({
             <label htmlFor={name}>{label}</label>
             {type === "textfield" ? (
               <Textarea
-                data={generalInfoState}
+                data={generalInfoState[name]}
                 name={name}
                 handleData={setGeneralInfoState}
               ></Textarea>

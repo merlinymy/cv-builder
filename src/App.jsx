@@ -24,53 +24,11 @@ function App() {
     return initialFields;
   });
 
-  const [resumeState, setResumeState] = useState(() => {
-    const initialFields = {};
-    return initialFields;
-  });
-
-  const [isPreview, setIsPreview] = useState(false);
-
   const [workInfoState, setWorkInfoState] = useState([]);
-
-  const saveChanges = () => {
-    // localStorage.setItem("resume", JSON.stringify({ ...generalInfoState }));
-  };
-
-  const updateResume = () => {
-    // setResumeState({ ...generalInfoState });
-  };
 
   const handleGeneralInfoState = function (e) {
     const { name, value } = e.target;
-    // setGeneralInfoState((prev) => {
-    //   return { ...prev, [name]: value };
-    // });
     setGeneralInfoState({ ...generalInfoState, [name]: value });
-  };
-
-  const handleWorkExperienceState = function (e) {
-    const { name, value, type } = e.target;
-    const stateid = e.target.getAttribute("stateid");
-    console.log(e.target);
-    setWorkInfoState((prev) => {
-      console.log(prev);
-      const newState = prev.map((ele) => {
-        if (ele.id === stateid) {
-          return type === "checkbox"
-            ? { ...ele, [name]: e.target.checked }
-            : { ...ele, [name]: value };
-        }
-        return ele;
-      });
-      return newState;
-    });
-  };
-
-  const handlePreview = (e) => {
-    e.preventDefault();
-    updateResume();
-    setIsPreview(!isPreview);
   };
 
   const addNewCard = () => {
@@ -84,35 +42,89 @@ function App() {
         endDate: "",
         isCurrent: false,
         location: "",
-        bulletPoints: [""],
+        bulletPoints: [],
       },
     ]);
   };
 
+  const addNewPoint = (id) => {
+    setWorkInfoState((prev) =>
+      prev.map((state) =>
+        state.id === id
+          ? {
+              ...state,
+              bulletPoints: [
+                ...state.bulletPoints,
+                {
+                  id: crypto.randomUUID(),
+                  content: "",
+                },
+              ],
+            }
+          : state,
+      ),
+    );
+  };
+
+  const removeBullet = (stateId, pointId) => {
+    setWorkInfoState((prev) =>
+      prev.map((state) =>
+        state.id === stateId
+          ? {
+              ...state,
+              bulletPoints: state.bulletPoints.filter(
+                (point) => point.id !== pointId,
+              ),
+            }
+          : state,
+      ),
+    );
+  };
+
+  const updatePoint = (stateId, pointId, newPoint) => {
+    setWorkInfoState((prev) => {
+      const newState = prev.map((state) =>
+        state.id === stateId
+          ? {
+              ...state,
+              bulletPoints: state.bulletPoints.map((point) =>
+                point.id === pointId ? { ...point, content: newPoint } : point,
+              ),
+            }
+          : state,
+      );
+      return newState;
+    });
+  };
+
   return (
     <div className="h-dvh flex-col flex items-center ">
-      <div className="m-2 w-[80%] max-w-[960px]">
+      <div className="m-2 w-[80%] max-w-[700px]">
         <Header></Header>
         <PreviewBtn
-          isPreview={isPreview}
-          handlePreview={handlePreview}
+        // isPreview={isPreview}
+        // handlePreview={handlePreview}
         ></PreviewBtn>
 
-        <Resume resumeData={resumeState}></Resume>
+        {/* <Resume resumeData={resumeState}></Resume> */}
         <GeneralInfo
           generalInfoFields={generalInfoFields}
           generalInfoState={generalInfoState}
           setGeneralInfoState={handleGeneralInfoState}
         >
-          <Savebutton saveChanges={saveChanges}></Savebutton>
+          <Savebutton></Savebutton>
         </GeneralInfo>
         <Divider></Divider>
         <WorkExperience
           workInfoState={workInfoState}
-          setWorkInfoState={handleWorkExperienceState}
+          setWorkInfoState={setWorkInfoState}
           workInfoFields={workInfoFields}
           addNewCard={addNewCard}
+          addNewPoint={addNewPoint}
+          removeBullet={removeBullet}
+          updatePoint={updatePoint}
         ></WorkExperience>
+        <Divider></Divider>
         <Footer></Footer>
       </div>
     </div>

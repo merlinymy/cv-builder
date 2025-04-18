@@ -11,8 +11,8 @@ export const generalInfoFields = [
 export const workInfoFields = [
   { name: "companyName", label: "Company Name", type: "text" },
   { name: "roleTitle", label: "Role Title", type: "text" },
-  { name: "startDate", label: "Start Date", type: "date" },
-  { name: "endDate", label: "End Date", type: "date" },
+  { name: "startDate", label: "Start Date", type: "month" },
+  { name: "endDate", label: "End Date", type: "month" },
   { name: "isCurrent", label: "Currently Work Here", type: "checkbox" },
   { name: "location", label: "Location", type: "text" },
   // { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
