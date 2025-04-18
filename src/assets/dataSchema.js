@@ -15,5 +15,5 @@ export const workInfoFields = [
   { name: "endDate", label: "End Date", type: "date" },
   { name: "isCurrent", label: "Currently Work Here", type: "checkbox" },
   { name: "location", label: "Location", type: "text" },
-  { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
+  // { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
 ];

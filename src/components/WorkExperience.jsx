@@ -9,7 +9,7 @@ export function WorkExperience({
 }) {
   return (
     <div>
-      <p>Work Experience</p>
+      <p className="text-2xl">Work Experience</p>
       <Card
         workInfoState={workInfoState}
         setWorkInfoState={setWorkInfoState}
@@ -17,6 +17,7 @@ export function WorkExperience({
       ></Card>
       <AddNewBtn addNewCard={addNewCard}>
         <PlusCircle></PlusCircle>
+        Add Work Experience
       </AddNewBtn>
     </div>
   );

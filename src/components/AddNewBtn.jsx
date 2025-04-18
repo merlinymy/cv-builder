@@ -5,7 +5,6 @@ export function AddNewBtn({ addNewCard, children }) {
       onClick={addNewCard}
     >
       {children}
-      <p className="mb-0.5">Add New</p>
     </button>
   );
 }

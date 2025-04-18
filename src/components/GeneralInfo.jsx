@@ -13,7 +13,7 @@ export function GeneralInfo({
         {generalInfoFields.map(({ name, label, type }) => (
           <div
             key={name}
-            className={`flex flex-col ${type === "textfield" ? "md:col-span-2" : ""}`}
+            className={`flex flex-col gap-2 ${type === "textfield" ? "md:col-span-2" : ""}`}
           >
             <label htmlFor={name}>{label}</label>
             {type === "textfield" ? (

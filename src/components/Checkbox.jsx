@@ -6,6 +6,7 @@ export function Checkbox({ name, handleData, stateId }) {
       name={name}
       onChange={handleData}
       stateid={stateId}
+      className="mt-1"
     />
   );
 }
