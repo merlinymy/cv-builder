@@ -117,7 +117,14 @@ export function Card({
       return;
     }
     const newState = moveUp(workInfoState, selectedState);
-    console.log(newState);
+    setWorkInfoState(newState);
+  };
+
+  const moveCardDown = (workInfoState, selectedState) => {
+    if (workInfoState[workInfoState.length - 1] === selectedState) {
+      return;
+    }
+    const newState = moveDown(workInfoState, selectedState);
     setWorkInfoState(newState);
   };
   return (
@@ -149,6 +156,7 @@ export function Card({
           isLast={workInfoStates[workInfoStates.length - 1] === workInfoState}
           handleRemove={() => removeExperience(workInfoState.id)}
           moveUp={() => moveCardUp(workInfoStates, workInfoState)}
+          moveDown={() => moveCardDown(workInfoStates, workInfoState)}
         ></UtilBar>
       </div>
     </div>
