@@ -4,9 +4,11 @@ import { Textarea } from "./Textarea";
 import { Checkbox } from "./Checkbox";
 import { BulletPoints } from "./BulletPoints";
 import { UtilBar } from "./UtilBar";
+import { moveUp, moveDown } from "../util/util";
 
 export function Card({
   workInfoState,
+  workInfoStates,
   setWorkInfoState,
   workInfoFields,
   workOrProject,
@@ -110,6 +112,14 @@ export function Card({
       return newState;
     });
   };
+  const moveCardUp = (workInfoState, selectedState) => {
+    if (workInfoState[0] === selectedState) {
+      return;
+    }
+    const newState = moveUp(workInfoState, selectedState);
+    console.log(newState);
+    setWorkInfoState(newState);
+  };
   return (
     <div className="flex flex-col gap-4">
       <div
@@ -134,7 +144,11 @@ export function Card({
         ></BulletPoints>
         <UtilBar
           isPoint={false}
+          workOrProject={workOrProject}
+          isFirst={workInfoStates[0] === workInfoState}
+          isLast={workInfoStates[workInfoStates.length - 1] === workInfoState}
           handleRemove={() => removeExperience(workInfoState.id)}
+          moveUp={() => moveCardUp(workInfoStates, workInfoState)}
         ></UtilBar>
       </div>
     </div>

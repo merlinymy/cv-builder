@@ -22,6 +22,7 @@ export function WorkExperience({
       },
     ]);
   };
+
   return (
     <div>
       <p className="text-2xl">
@@ -33,6 +34,7 @@ export function WorkExperience({
             key={state.id}
             workOrProject={workOrProject}
             workInfoState={state}
+            workInfoStates={workInfoState}
             setWorkInfoState={setWorkInfoState}
             workInfoFields={workInfoFields}
           ></Card>
