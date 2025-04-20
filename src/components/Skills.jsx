@@ -8,13 +8,16 @@ export function Skills({ skills, setSkills }) {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       addSkill(setSkills, skillInput);
-      setSkillInput("");
     }
   };
   const addSkill = (setSkills, newSkill) => {
-    if (newSkill !== "" && !skillInput.includes(newSkill)) {
-      setSkills((prev) => [...prev, newSkill]);
+    if (newSkill == "" || skills.includes(newSkill)) {
+      setSkillInput("");
+      return;
     }
+
+    setSkills((prev) => [...prev, newSkill]);
+    setSkillInput("");
   };
 
   const handleInput = (e) => {
