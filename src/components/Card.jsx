@@ -33,7 +33,7 @@ export function Card({
       return (
         <Input
           type={field.type}
-          name={field.name}
+          name={field.name + state.id}
           stateId={state.id}
           data={state}
           handleData={handleWorkExperienceState}
@@ -43,7 +43,7 @@ export function Card({
       return (
         <Textarea
           data={state[field.name]}
-          name={field.name}
+          name={field.name + state.id}
           stateId={state.id}
           handleData={handleWorkExperienceState}
         ></Textarea>
@@ -51,7 +51,7 @@ export function Card({
     } else if (field.type === "checkbox") {
       return (
         <Checkbox
-          name={field.name}
+          name={field.name + state.id}
           data={state}
           stateId={state.id}
           handleData={handleWorkExperienceState}
@@ -147,7 +147,10 @@ export function Card({
             key={f.name}
             className={`flex gap-2 ${f.type === "textarea" ? "md:col-span-2" : ""} ${f.type === "checkbox" ? "flex-row items-center" : "flex-col"}`}
           >
-            <Label inputId={f.name} inputName={f.label}></Label>
+            <Label
+              inputId={f.name + workInfoState.id}
+              inputName={f.label}
+            ></Label>
             {generateForm(f, workInfoState)}
           </div>
         ))}
