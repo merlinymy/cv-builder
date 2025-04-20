@@ -140,7 +140,7 @@ export function Card({
     <div className="flex flex-col gap-4">
       <div
         key={workInfoState.id}
-        className="border-1 border-amber-50 p-5 grid grid-cols-1 md:grid-cols-2 gap-4"
+        className=" card border-1 border-amber-50 p-5 grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {workInfoFields.map((f) => (
           <div

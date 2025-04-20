@@ -15,6 +15,7 @@ import {
   workInfoFields,
   projectInfoFields,
 } from "./assets/dataSchema";
+import { Skills } from "./components/Skills";
 
 function App() {
   const [generalInfoState, setGeneralInfoState] = useState(() => {
@@ -30,6 +31,7 @@ function App() {
 
   const [workInfoState, setWorkInfoState] = useState([]);
   const [projectInfoState, setprojectInfoState] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   return (
     <div className="h-dvh flex-col flex items-center ">
@@ -62,6 +64,8 @@ function App() {
           setWorkInfoState={setprojectInfoState}
           workInfoFields={projectInfoFields}
         ></WorkExperience>
+        <Divider></Divider>
+        <Skills skills={skills} setSkills={setSkills}></Skills>
         <Divider></Divider>
         <Footer></Footer>
       </div>

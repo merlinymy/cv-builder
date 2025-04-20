@@ -32,14 +32,26 @@ button:hover {
   border-color: #646cff;
 }
 
+input,
+textarea,
+.card {
+  border: 1px solid rgba(148, 148, 148, 0.441);
+}
+
 button:disabled {
   opacity: 30%;
   cursor: default;
   border-color: white;
 }
 
+.tag {
+  background-color: #3d3d3d;
+  padding: 0.15rem 0.95rem 0.25rem 0.95rem;
+}
+
 hr {
   margin: 1rem 0rem;
+  color: rgba(148, 148, 148, 0.441);
 }
 @media (prefers-color-scheme: light) {
   :root {
