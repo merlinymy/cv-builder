@@ -7,8 +7,10 @@ export function BulletPoints({
   addNewPoint,
   removeBullet,
   updatePoint,
+  updatePoints,
 }) {
   const bulletPoints = workInfoState.bulletPoints;
+
   return (
     <div className="md:col-span-2 ">
       <p className="text-2xl">Bullet Points</p>
@@ -16,10 +18,12 @@ export function BulletPoints({
         {bulletPoints.map((point) => (
           <BulletPoint
             key={point.id}
+            bulletPoints={bulletPoints}
             bulletPoint={point}
             workInfoState={workInfoState}
             removeBullet={removeBullet}
             updatePoint={updatePoint}
+            updatePoints={updatePoints}
           ></BulletPoint>
         ))}
       </div>

@@ -112,6 +112,15 @@ export function Card({
       return newState;
     });
   };
+
+  const updatePoints = (stateId, pointsArr) => {
+    setWorkInfoState((prev) => {
+      const newState = prev.map((state) =>
+        state.id === stateId ? { ...state, bulletPoints: pointsArr } : state,
+      );
+      return newState;
+    });
+  };
   const moveCardUp = (workInfoState, selectedState) => {
     if (workInfoState[0] === selectedState) {
       return;
@@ -148,6 +157,7 @@ export function Card({
           addNewPoint={addNewPoint}
           removeBullet={removeBullet}
           updatePoint={updatePoint}
+          updatePoints={updatePoints}
         ></BulletPoints>
         <UtilBar
           isPoint={false}
