@@ -80,6 +80,14 @@ Here's the journey:
 
 ---
 
+**4/21/2025**  
+Fixed an annoying bug that cause the app to crash
+The problem I think is within react-pdf. When A state is updated
+(only to "" or empty), react-pdf re-render process crash the app.
+My hacky solution is to hide the pdf before re-rendering and display it back afterwards
+
+---
+
 ### ✍️ Original Resume Component (Legacy HTML version)
 
 <details>

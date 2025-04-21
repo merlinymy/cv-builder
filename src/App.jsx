@@ -4,7 +4,7 @@ import { Footer } from "./components/Footer";
 import { GeneralInfo } from "./components/GeneralInfo";
 import { Savebutton } from "./components/Savebutton";
 import { Resume } from "./components/Resume";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { PreviewBtn } from "./components/PreviewBtn";
 import "./styles/app.css";
 import { Divider } from "./components/Divider";
