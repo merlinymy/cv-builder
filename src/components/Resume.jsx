@@ -117,12 +117,12 @@ export const Resume = ({
       </View>
 
       {/* ---------- SUMMARY ---------- */}
-      {
+      {general.summary && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Summary</Text>
           <Text>{general.summary}</Text>
         </View>
-      }
+      )}
 
       {/* ---------- SKILLS ---------- */}
       {skills.length > 0 && (

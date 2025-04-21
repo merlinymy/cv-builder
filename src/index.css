@@ -95,3 +95,16 @@ hr {
 .animate-fade-in-out {
   animation: fade-in-out 2s ease-in-out forwards;
 }
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
