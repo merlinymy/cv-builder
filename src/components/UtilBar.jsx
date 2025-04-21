@@ -14,11 +14,15 @@ export function UtilBar({
   return (
     <div className="utilbar-wrap md:col-span-2 flex justify-between items-center gap-0.5">
       <div className="move-wrap flex gap-0.5">
-        <button className="move-up h-6 w-6" disabled={isFirst} onClick={moveUp}>
+        <button
+          className="move-up h-6 w-6 transition duration-300 ease-in-out hover:bg-[#4b4b4b]"
+          disabled={isFirst}
+          onClick={moveUp}
+        >
           <ArrowUp></ArrowUp>
         </button>
         <button
-          className="move-down h-6 w-6"
+          className="move-down h-6 w-6 transition duration-300 ease-in-out hover:bg-[#4b4b4b]"
           disabled={isLast}
           onClick={moveDown}
         >
@@ -26,7 +30,7 @@ export function UtilBar({
         </button>
       </div>
       <button
-        className={isPoint ? "h-6 w-6" : "pl-4 pt-2 pr-4 pb-2"}
+        className={`${isPoint ? "h-6 w-6" : "pl-4 pt-2 pr-4 pb-2"} transition duration-300 ease-in-out hover:bg-[#4b4b4b]`}
         onClick={handleRemove}
       >
         <TrashCan></TrashCan>

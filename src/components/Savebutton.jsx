@@ -3,7 +3,7 @@ export function Savebutton({ saveChanges, saveMessageVisible }) {
     <div className="flex items-center">
       <button
         onClick={saveChanges}
-        className=" save-btn mt-3 pl-4 pt-2 pr-4 pb-2"
+        className=" mt-3 pl-4 pt-2 pr-4 pb-2 text-[#000000] bg-[#c5c5c5] transition duration-300 ease-in-out hover:text-[white] hover:bg-[#151515]"
       >
         Save Changes
       </button>

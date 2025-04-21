@@ -18,6 +18,7 @@ import {
 } from "./assets/dataSchema";
 import { Skills } from "./components/Skills";
 import { PDFViewer, pdf } from "@react-pdf/renderer";
+import { SubHeader } from "./components/SubHeader";
 
 function App() {
   let storedResume;
@@ -95,9 +96,10 @@ function App() {
   };
 
   return (
-    <div className="h-dvh flex-col flex items-center ">
-      <div className="m-2 w-[80%] max-w-[700px]">
+    <div className="flex-col flex items-center ">
+      <div className="m-2 w-[80%] max-w-[700px] ">
         <Header></Header>
+        <SubHeader></SubHeader>
         <PreviewBtn
           previewVisible={previewVisible}
           handlePreview={togglePreview}
@@ -105,8 +107,13 @@ function App() {
         {
           <div>
             {previewVisible && (
-              <div className="resumePreview h-[1000px]">
-                <button onClick={downloadPDF}>Download PDF</button>
+              <div className="resumePreview mb-20 h-[1000px]">
+                <button
+                  className="mt-3 mb-3 pl-4 pt-2 pr-4 pb-2 text-[#000000] bg-[#cacaca] transition duration-300 ease-in-out hover:bg-[#ffffff]"
+                  onClick={downloadPDF}
+                >
+                  Download PDF
+                </button>
 
                 <PDFViewer style={{ width: "100%", height: "100%" }}>
                   <Resume
@@ -123,7 +130,6 @@ function App() {
           </div>
         }
         <Divider></Divider>
-        {/* <Resume resumeData={resumeState}></Resume> */}
         <GeneralInfo
           generalInfoFields={generalInfoFields}
           generalInfoState={generalInfoState}
@@ -168,10 +174,6 @@ function App() {
           saveChanges={saveChanges}
           saveMessageVisible={saveMessageVisible}
         ></Savebutton>
-
-        <Divider></Divider>
-
-        <Footer></Footer>
       </div>
     </div>
   );

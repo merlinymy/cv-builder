@@ -17,19 +17,15 @@
 
 button {
   border-radius: 8px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   cursor: pointer;
-  transition: border-color 0.25s;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-button:hover {
-  border-color: #646cff;
 }
 
 input,
@@ -47,11 +43,6 @@ button:disabled {
 .tag {
   background-color: #3d3d3d;
   padding: 0.15rem 0.95rem 0.25rem 0.95rem;
-}
-
-.save-btn {
-  background-color: #c5c5c5;
-  color: black;
 }
 
 hr {
