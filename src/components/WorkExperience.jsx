@@ -6,6 +6,7 @@ export function WorkExperience({
   workInfoState,
   setWorkInfoState,
   workInfoFields,
+  setPreviewVisible,
 }) {
   const addNewCard = (workOrProject) => {
     setWorkInfoState((prev) => [
@@ -69,6 +70,7 @@ export function WorkExperience({
             workInfoStates={workInfoState}
             setWorkInfoState={setWorkInfoState}
             workInfoFields={workInfoFields}
+            setPreviewVisible={setPreviewVisible}
           ></Card>
         ))}
       </div>

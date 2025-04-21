@@ -4,7 +4,7 @@ import { Footer } from "./components/Footer";
 import { GeneralInfo } from "./components/GeneralInfo";
 import { Savebutton } from "./components/Savebutton";
 import { Resume } from "./components/Resume";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { PreviewBtn } from "./components/PreviewBtn";
 import "./styles/app.css";
 import { Divider } from "./components/Divider";
@@ -109,7 +109,7 @@ function App() {
             {previewVisible && (
               <div className="resumePreview mb-20 h-[1000px]">
                 <button
-                  className="mt-3 mb-3 pl-4 pt-2 pr-4 pb-2 text-[#000000] bg-[#cacaca] transition duration-300 ease-in-out hover:bg-[#ffffff]"
+                  className="mt-3 mb-3 pl-4 pt-2 pr-4 pb-2 text-[#000000] bg-[#cacaca] transition duration-300 ease-in-out dark:hover:bg-[#ffffff]"
                   onClick={downloadPDF}
                 >
                   Download PDF
@@ -123,7 +123,7 @@ function App() {
                     education={education}
                     certification={certification}
                     skills={skills}
-                  ></Resume>
+                  />
                 </PDFViewer>
               </div>
             )}
@@ -146,6 +146,7 @@ function App() {
           workInfoState={workInfoState}
           setWorkInfoState={setWorkInfoState}
           workInfoFields={workInfoFields}
+          setPreviewVisible={setPreviewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <WorkExperience
@@ -153,6 +154,7 @@ function App() {
           workInfoState={projectInfoState}
           setWorkInfoState={setprojectInfoState}
           workInfoFields={projectInfoFields}
+          setPreviewVisible={setPreviewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <Skills skills={skills} setSkills={setSkills}></Skills>
@@ -162,6 +164,7 @@ function App() {
           workInfoState={education}
           setWorkInfoState={setEducation}
           workInfoFields={educationFields}
+          setPreviewVisible={setPreviewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <WorkExperience
@@ -169,6 +172,7 @@ function App() {
           workInfoState={certification}
           setWorkInfoState={setCertification}
           workInfoFields={certificationFields}
+          setPreviewVisible={setPreviewVisible}
         ></WorkExperience>
         <Savebutton
           saveChanges={saveChanges}

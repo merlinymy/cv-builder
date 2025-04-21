@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
   header: { textAlign: "center", marginBottom: 12 },
   name: { fontSize: 24, fontWeight: "bold" },
   contactLine: { marginTop: 4 },
+  hidden: {
+    opacity: 0,
+    fontSize: 0.1,
+  },
 
   /* --- two‑column row --- */
   row: {
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
 });
 
 function sanitizeLink(url) {
-  if (!url || typeof url !== "string") return null;
+  if (url === " " || typeof url !== "string") return null;
 
   try {
     const parsed = new URL(url.startsWith("http") ? url : `https://${url}`);
@@ -95,45 +99,44 @@ export const Resume = ({
         <Text style={styles.contactLine}>
           {general.email && `${general.email}`}
           {general.phone && ` | ${general.phone}`}
-          {sanitizeLink(general.github) && (
-            <Text>
-              {" | "}
-              <Link src={`https://${sanitizeLink(general.github)}`}>
-                {sanitizeLink(general.github)}
-              </Link>
-            </Text>
-          )}
-          {sanitizeLink(general.linkedIn) && (
-            <Text>
-              {" | "}
-              <Link src={`https://${sanitizeLink(general.linkedIn)}`}>
-                {sanitizeLink(general.linkedIn)}
-              </Link>
-            </Text>
-          )}
+
+          <Text style={!sanitizeLink(general.github) ? styles.hidden : {}}>
+            {" | "}
+            <Link src={`https://${sanitizeLink(general.github)}`}>
+              {sanitizeLink(general.github)}
+            </Link>
+          </Text>
+
+          <Text style={!sanitizeLink(general.linkedIn) ? styles.hidden : {}}>
+            {" | "}
+            <Link src={`https://${sanitizeLink(general.linkedIn)}`}>
+              {sanitizeLink(general.linkedIn)}
+            </Link>
+          </Text>
         </Text>
       </View>
 
       {/* ---------- SUMMARY ---------- */}
-      {general.summary && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Summary</Text>
           <Text>{general.summary}</Text>
         </View>
-      )}
+      }
 
       {/* ---------- SKILLS ---------- */}
-      {!!skills?.length && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Skills</Text>
           <Text>{skills.join(", ")}</Text>
         </View>
-      )}
+      }
 
       {/* ---------- WORK EXPERIENCE ---------- */}
-      {!!work?.length && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Work Experience</Text>
+
           {work.map((job) => (
             <View key={job.id} style={{ marginTop: 8 }}>
               <View style={styles.row}>
@@ -158,10 +161,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      )}
+      }
 
       {/* ---------- PROJECTS ---------- */}
-      {!!projects?.length && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Projects</Text>
           {projects.map((proj) => (
@@ -190,10 +193,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      )}
+      }
 
       {/* ---------- EDUCATION ---------- */}
-      {!!education?.length && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Education</Text>
           {education.map((edu) => (
@@ -211,10 +214,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      )}
+      }
 
       {/* ---------- CERTIFICATIONS ---------- */}
-      {!!certification?.length && (
+      {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Certifications</Text>
           {certification.map((cert) => (
@@ -224,7 +227,7 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      )}
+      }
     </Page>
   </Document>
 );

@@ -12,6 +12,7 @@ export function Card({
   setWorkInfoState,
   workInfoFields,
   workOrProject,
+  setPreviewVisible,
 }) {
   const handleWorkExperienceState = function (e) {
     const { name, value, type } = e.target;
@@ -61,7 +62,12 @@ export function Card({
   };
 
   const removeExperience = (id) => {
+    setPreviewVisible(() => false);
+
     setWorkInfoState((prev) => prev.filter((state) => state.id !== id));
+    setTimeout(() => {
+      setPreviewVisible(() => true);
+    }, 1);
   };
 
   const addNewPoint = (id) => {
@@ -84,6 +90,8 @@ export function Card({
   };
 
   const removeBullet = (stateId, pointId) => {
+    setPreviewVisible(() => false);
+
     setWorkInfoState((prev) =>
       prev.map((state) =>
         state.id === stateId
@@ -96,6 +104,9 @@ export function Card({
           : state,
       ),
     );
+    setTimeout(() => {
+      setPreviewVisible(() => true);
+    }, 1);
   };
 
   const updatePoint = (stateId, pointId, newPoint) => {
@@ -173,6 +184,7 @@ export function Card({
           handleRemove={() => removeExperience(workInfoState.id)}
           moveUp={() => moveCardUp(workInfoStates, workInfoState)}
           moveDown={() => moveCardDown(workInfoStates, workInfoState)}
+          setPreviewVisible={setPreviewVisible}
         ></UtilBar>
       </div>
     </div>
