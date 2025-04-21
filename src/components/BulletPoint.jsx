@@ -17,10 +17,11 @@ export function BulletPoint({
     const newArr = moveDown(bulletPoints, bulletPoint);
     updatePoints(stateId, newArr);
   };
+
   return (
     <div key={bulletPoint.pointId} className="flex gap-2 items-center">
       <Textarea
-        data={bulletPoint.context}
+        data={bulletPoint.content}
         handleData={(e) =>
           updatePoint(workInfoState.id, bulletPoint.id, e.target.value)
         }

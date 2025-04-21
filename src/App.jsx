@@ -9,48 +9,130 @@ import { PreviewBtn } from "./components/PreviewBtn";
 import "./styles/app.css";
 import { Divider } from "./components/Divider";
 import { WorkExperience } from "./components/WorkExperience";
-import { Card } from "./components/Card";
 import {
   generalInfoFields,
   workInfoFields,
   projectInfoFields,
   educationFields,
+  certificationFields,
 } from "./assets/dataSchema";
 import { Skills } from "./components/Skills";
+import { PDFViewer, pdf } from "@react-pdf/renderer";
 
 function App() {
+  let storedResume;
+  if (!localStorage.getItem("resume")) {
+    localStorage.setItem("resume", JSON.stringify({}));
+  } else {
+    storedResume = JSON.parse(localStorage.getItem("resume"));
+  }
   const [generalInfoState, setGeneralInfoState] = useState(() => {
-    const localResume = localStorage.getItem("resume");
     let initialFields = {};
-    if (localResume) {
-      initialFields = { ...JSON.parse(localResume) };
-    } else {
-      generalInfoFields.forEach((f) => (initialFields[f.name] = ""));
+    let saved = storedResume.general;
+    if (saved) {
+      return saved;
     }
+    generalInfoFields.forEach((f) => (initialFields[f.name] = ""));
     return initialFields;
   });
 
-  const [workInfoState, setWorkInfoState] = useState([]);
-  const [projectInfoState, setprojectInfoState] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [education, setEducation] = useState([]);
+  const [workInfoState, setWorkInfoState] = useState(storedResume.work || []);
+  const [projectInfoState, setprojectInfoState] = useState(
+    storedResume.projects || [],
+  );
+  const [skills, setSkills] = useState(storedResume.skills || []);
+  const [education, setEducation] = useState(storedResume.education || []);
+  const [certification, setCertification] = useState(
+    storedResume.certification || [],
+  );
+
+  const saveChanges = () => {
+    const resume = {
+      general: generalInfoState,
+      work: workInfoState,
+      projects: projectInfoState,
+      skills: skills,
+      education: education,
+      certification: certification,
+    };
+    try {
+      localStorage.setItem("resume", JSON.stringify(resume));
+      setSaveMessageVisible(true);
+      setTimeout(() => {
+        setSaveMessageVisible(false);
+      }, 3000);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const [saveMessageVisible, setSaveMessageVisible] = useState(false);
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const togglePreview = () => {
+    storedResume = JSON.parse(localStorage.getItem("resume"));
+    setPreviewVisible(!previewVisible);
+  };
+
+  const downloadPDF = async () => {
+    const blob = await pdf(
+      <Resume
+        general={generalInfoState}
+        work={workInfoState}
+        projects={projectInfoState}
+        education={education}
+        certification={certification}
+        skills={skills}
+      ></Resume>,
+    ).toBlob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = `${generalInfoState.name.split(" ").join("_")}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="h-dvh flex-col flex items-center ">
       <div className="m-2 w-[80%] max-w-[700px]">
         <Header></Header>
         <PreviewBtn
-        // isPreview={isPreview}
-        // handlePreview={handlePreview}
+          previewVisible={previewVisible}
+          handlePreview={togglePreview}
         ></PreviewBtn>
+        {
+          <div>
+            {previewVisible && (
+              <div className="resumePreview h-[1000px]">
+                <button onClick={downloadPDF}>Download PDF</button>
 
+                <PDFViewer style={{ width: "100%", height: "100%" }}>
+                  <Resume
+                    general={generalInfoState}
+                    work={workInfoState}
+                    projects={projectInfoState}
+                    education={education}
+                    certification={certification}
+                    skills={skills}
+                  ></Resume>
+                </PDFViewer>
+              </div>
+            )}
+          </div>
+        }
+        <Divider></Divider>
         {/* <Resume resumeData={resumeState}></Resume> */}
         <GeneralInfo
           generalInfoFields={generalInfoFields}
           generalInfoState={generalInfoState}
           setGeneralInfoState={setGeneralInfoState}
         >
-          <Savebutton></Savebutton>
+          <Savebutton
+            saveChanges={saveChanges}
+            saveMessageVisible={saveMessageVisible}
+          ></Savebutton>
         </GeneralInfo>
         <Divider></Divider>
         <WorkExperience
@@ -75,6 +157,20 @@ function App() {
           setWorkInfoState={setEducation}
           workInfoFields={educationFields}
         ></WorkExperience>
+        <Divider></Divider>
+        <WorkExperience
+          workOrProject="certification"
+          workInfoState={certification}
+          setWorkInfoState={setCertification}
+          workInfoFields={certificationFields}
+        ></WorkExperience>
+        <Savebutton
+          saveChanges={saveChanges}
+          saveMessageVisible={saveMessageVisible}
+        ></Savebutton>
+
+        <Divider></Divider>
+
         <Footer></Footer>
       </div>
     </div>

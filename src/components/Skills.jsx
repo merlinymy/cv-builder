@@ -46,7 +46,7 @@ export function Skills({ skills, setSkills }) {
           Add Skill
         </button>
       </div>
-      <div className="skillTags flex gap-2">
+      <div className="skillTags flex gap-2 flex-wrap">
         {skills.map((s) => (
           <Tag
             key={s}

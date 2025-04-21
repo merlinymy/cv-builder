@@ -36,7 +36,9 @@ export function UtilBar({
             ? "Remove Experience"
             : workOrProject === "project"
               ? "Remove Project"
-              : "Remove Education"}
+              : workOrProject === "education"
+                ? "Remove Education"
+                : "Remove Certification"}
       </button>
     </div>
   );

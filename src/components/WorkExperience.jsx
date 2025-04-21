@@ -10,7 +10,7 @@ export function WorkExperience({
   const addNewCard = (workOrProject) => {
     setWorkInfoState((prev) => [
       ...prev,
-      workOrProject === "work" || workOrProject === "project"
+      workOrProject === "work"
         ? {
             id: crypto.randomUUID(),
             companyName: "",
@@ -21,25 +21,44 @@ export function WorkExperience({
             location: "",
             bulletPoints: [],
           }
-        : {
-            id: crypto.randomUUID(),
-            institutionName: "",
-            certification: "",
-            startDate: "",
-            endDate: "",
-            gpa: "",
-          },
+        : workOrProject === "education"
+          ? {
+              id: crypto.randomUUID(),
+              institutionName: "",
+              certification: "",
+              startDate: "",
+              endDate: "",
+              gpa: "",
+            }
+          : workOrProject === "certification"
+            ? {
+                id: crypto.randomUUID(),
+                certificationName: "",
+                description: "",
+              }
+            : {
+                id: crypto.randomUUID(),
+                projectName: "",
+                roleTitle: "",
+                startDate: "",
+                endDate: "",
+                isCurrent: false,
+                location: "",
+                bulletPoints: [],
+              },
     ]);
   };
 
   return (
     <div>
-      <p className="text-2xl">
+      <p className="text-2xl mb-4">
         {workOrProject === "work"
           ? "Work Experience"
           : workOrProject === "project"
             ? "Projects"
-            : "Education"}
+            : workOrProject === "education"
+              ? "Education"
+              : "Certifications"}
       </p>
       <div className="flex flex-col gap-4">
         {workInfoState.map((state) => (
@@ -60,7 +79,9 @@ export function WorkExperience({
           ? "Add Work Experience"
           : workOrProject === "project"
             ? "Add Project"
-            : "Add Education"}
+            : workOrProject === "education"
+              ? "Add Education"
+              : "Add Certification"}
       </AddNewBtn>
     </div>
   );

@@ -1,8 +1,8 @@
-export function PreviewBtn({ isPreview, handlePreview }) {
+export function PreviewBtn({ previewVisible, handlePreview }) {
   return (
     <div>
       <button className="preview" onClick={handlePreview}>
-        {isPreview ? "Hide" : "Show"} Preview
+        {previewVisible ? "Hide" : "Show"} Preview
       </button>
     </div>
   );

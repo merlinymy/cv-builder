@@ -36,3 +36,8 @@ export const educationFields = [
   { name: "gpa", label: "GPA", type: "text" },
   // { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
 ];
+
+export const certificationFields = [
+  { name: "certificationName", label: "Certification Name", type: "text" },
+  { name: "description", label: "Description", type: "text" },
+];
