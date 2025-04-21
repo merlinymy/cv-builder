@@ -61,6 +61,19 @@ const styles = StyleSheet.create({
   boldText: { fontWeight: "semibold" },
 });
 
+function sanitizeLink(url) {
+  if (!url || typeof url !== "string") return null;
+
+  try {
+    const parsed = new URL(url.startsWith("http") ? url : `https://${url}`);
+    const host = parsed.hostname.replace(/^www\./, "");
+    const path = parsed.pathname === "/" ? "" : parsed.pathname;
+    return `${host}${path}`;
+  } catch {
+    return null;
+  }
+}
+
 /* ---------------------------------- */
 /*            MAIN COMPONENT          */
 /* ---------------------------------- */
@@ -80,9 +93,24 @@ export const Resume = ({
         <Text style={styles.name}>{general.name}</Text>
         <Text>{general.location}</Text>
         <Text style={styles.contactLine}>
-          {general.email} | {general.phone} |{" "}
-          <Link src={general.github}>{general.github}</Link> |{" "}
-          <Link src={general.linkedIn}>{general.linkedIn}</Link>
+          {general.email && `${general.email}`}
+          {general.phone && ` | ${general.phone}`}
+          {sanitizeLink(general.github) && (
+            <Text>
+              {" | "}
+              <Link src={`https://${sanitizeLink(general.github)}`}>
+                {sanitizeLink(general.github)}
+              </Link>
+            </Text>
+          )}
+          {sanitizeLink(general.linkedIn) && (
+            <Text>
+              {" | "}
+              <Link src={`https://${sanitizeLink(general.linkedIn)}`}>
+                {sanitizeLink(general.linkedIn)}
+              </Link>
+            </Text>
+          )}
         </Text>
       </View>
 
