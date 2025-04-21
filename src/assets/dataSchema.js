@@ -27,3 +27,12 @@ export const projectInfoFields = [
   { name: "location", label: "Location", type: "text" },
   // { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
 ];
+
+export const educationFields = [
+  { name: "institutionName", label: "Institution Name", type: "text" },
+  { name: "certification", label: "Certification", type: "text" },
+  { name: "startDate", label: "Start Date", type: "month" },
+  { name: "endDate", label: "End Date", type: "month" },
+  { name: "gpa", label: "GPA", type: "text" },
+  // { name: "bulletPoints", label: "Bullet Points", type: "textarea" },
+];

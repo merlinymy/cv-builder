@@ -14,6 +14,7 @@ import {
   generalInfoFields,
   workInfoFields,
   projectInfoFields,
+  educationFields,
 } from "./assets/dataSchema";
 import { Skills } from "./components/Skills";
 
@@ -32,6 +33,7 @@ function App() {
   const [workInfoState, setWorkInfoState] = useState([]);
   const [projectInfoState, setprojectInfoState] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [education, setEducation] = useState([]);
 
   return (
     <div className="h-dvh flex-col flex items-center ">
@@ -67,6 +69,12 @@ function App() {
         <Divider></Divider>
         <Skills skills={skills} setSkills={setSkills}></Skills>
         <Divider></Divider>
+        <WorkExperience
+          workOrProject="education"
+          workInfoState={education}
+          setWorkInfoState={setEducation}
+          workInfoFields={educationFields}
+        ></WorkExperience>
         <Footer></Footer>
       </div>
     </div>

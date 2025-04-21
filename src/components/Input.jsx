@@ -10,7 +10,7 @@ export function Input({
   return (
     <input
       type={type}
-      id={name}
+      id={stateId ? name + stateId : name}
       stateid={stateId}
       name={name}
       placeholder={placeHolder}

@@ -7,26 +7,39 @@ export function WorkExperience({
   setWorkInfoState,
   workInfoFields,
 }) {
-  const addNewCard = () => {
+  const addNewCard = (workOrProject) => {
     setWorkInfoState((prev) => [
       ...prev,
-      {
-        id: crypto.randomUUID(),
-        companyName: "",
-        roleTitle: "",
-        startDate: "",
-        endDate: "",
-        isCurrent: false,
-        location: "",
-        bulletPoints: [],
-      },
+      workOrProject === "work" || workOrProject === "project"
+        ? {
+            id: crypto.randomUUID(),
+            companyName: "",
+            roleTitle: "",
+            startDate: "",
+            endDate: "",
+            isCurrent: false,
+            location: "",
+            bulletPoints: [],
+          }
+        : {
+            id: crypto.randomUUID(),
+            institutionName: "",
+            certification: "",
+            startDate: "",
+            endDate: "",
+            gpa: "",
+          },
     ]);
   };
 
   return (
     <div>
       <p className="text-2xl">
-        {workOrProject === "work" ? "Work Experience" : "Projects"}
+        {workOrProject === "work"
+          ? "Work Experience"
+          : workOrProject === "project"
+            ? "Projects"
+            : "Education"}
       </p>
       <div className="flex flex-col gap-4">
         {workInfoState.map((state) => (
@@ -41,9 +54,13 @@ export function WorkExperience({
         ))}
       </div>
 
-      <AddNewBtn addNewCard={addNewCard}>
+      <AddNewBtn addNewCard={() => addNewCard(workOrProject)}>
         <PlusCircle></PlusCircle>
-        {workOrProject === "work" ? "Add Work Experience" : "Add Projects"}
+        {workOrProject === "work"
+          ? "Add Work Experience"
+          : workOrProject === "project"
+            ? "Add Project"
+            : "Add Education"}
       </AddNewBtn>
     </div>
   );

@@ -33,7 +33,7 @@ export function Card({
       return (
         <Input
           type={field.type}
-          name={field.name + state.id}
+          name={field.name}
           stateId={state.id}
           data={state}
           handleData={handleWorkExperienceState}
@@ -43,7 +43,7 @@ export function Card({
       return (
         <Textarea
           data={state[field.name]}
-          name={field.name + state.id}
+          name={field.name}
           stateId={state.id}
           handleData={handleWorkExperienceState}
         ></Textarea>
@@ -51,7 +51,7 @@ export function Card({
     } else if (field.type === "checkbox") {
       return (
         <Checkbox
-          name={field.name + state.id}
+          name={field.name}
           data={state}
           stateId={state.id}
           handleData={handleWorkExperienceState}
@@ -59,6 +59,7 @@ export function Card({
       );
     }
   };
+
   const removeExperience = (id) => {
     setWorkInfoState((prev) => prev.filter((state) => state.id !== id));
   };
@@ -136,6 +137,7 @@ export function Card({
     const newState = moveDown(workInfoState, selectedState);
     setWorkInfoState(newState);
   };
+
   return (
     <div className="flex flex-col gap-4">
       <div
@@ -154,14 +156,15 @@ export function Card({
             {generateForm(f, workInfoState)}
           </div>
         ))}
-
-        <BulletPoints
-          workInfoState={workInfoState}
-          addNewPoint={addNewPoint}
-          removeBullet={removeBullet}
-          updatePoint={updatePoint}
-          updatePoints={updatePoints}
-        ></BulletPoints>
+        {workInfoState.bulletPoints && (
+          <BulletPoints
+            workInfoState={workInfoState}
+            addNewPoint={addNewPoint}
+            removeBullet={removeBullet}
+            updatePoint={updatePoint}
+            updatePoints={updatePoints}
+          ></BulletPoints>
+        )}
         <UtilBar
           isPoint={false}
           workOrProject={workOrProject}
