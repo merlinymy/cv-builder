@@ -40,7 +40,7 @@ export function Skills({ skills, setSkills }) {
           handleKeyDown={handleKeyDown}
         ></Input>
         <button
-          className=" pl-4 pt-2 pr-4 pb-2"
+          className=" pl-4 pt-2 pr-4 pb-2 transition duration-300 ease-in-out hover:bg-[#4b4b4b]"
           onClick={() => addSkill(setSkills, skillInput)}
         >
           Add Skill
