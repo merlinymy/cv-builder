@@ -125,15 +125,15 @@ export const Resume = ({
       }
 
       {/* ---------- SKILLS ---------- */}
-      {
+      {skills.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Skills</Text>
           <Text>{skills.join(", ")}</Text>
         </View>
-      }
+      )}
 
       {/* ---------- WORK EXPERIENCE ---------- */}
-      {
+      {work.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Work Experience</Text>
 
@@ -161,10 +161,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      }
+      )}
 
       {/* ---------- PROJECTS ---------- */}
-      {
+      {projects.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Projects</Text>
           {projects.map((proj) => (
@@ -193,10 +193,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      }
+      )}
 
       {/* ---------- EDUCATION ---------- */}
-      {
+      {education.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Education</Text>
           {education.map((edu) => (
@@ -214,10 +214,10 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      }
+      )}
 
       {/* ---------- CERTIFICATIONS ---------- */}
-      {
+      {certification.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Certifications</Text>
           {certification.map((cert) => (
@@ -227,7 +227,7 @@ export const Resume = ({
             </View>
           ))}
         </View>
-      }
+      )}
     </Page>
   </Document>
 );
