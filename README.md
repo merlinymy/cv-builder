@@ -22,7 +22,7 @@ The app saves user data to localStorage, generates an HTML resume preview, and a
 - Resume preview formatted for A4 size
 - Downloadable PDF via blob rendering
 - Component reuse across work experience, projects, and certifications
-- Supports drag ordering of cards and bullet points
+- Supports re-ordering of cards and bullet points
 - Persistent resume data via localStorage
 
 ---
