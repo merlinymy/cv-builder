@@ -4,7 +4,7 @@ A modern, printable, and ATS-safe resume builder built with React.
 
 [![React](https://img.shields.io/badge/React-2025-blue)](https://reactjs.org/)
 [![PDF Export](https://img.shields.io/badge/PDF-Export-green)]()
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Coming%20Soon-blueviolet)]()
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-blueviolet)](https://atsresume.merlinyang.com/)
 
 ---
 
