@@ -13,6 +13,7 @@ export function Card({
   workInfoFields,
   workOrProject,
   setPreviewVisible,
+  previewVisible,
 }) {
   const handleWorkExperienceState = function (e) {
     const { name, value, type } = e.target;
@@ -65,6 +66,7 @@ export function Card({
     setPreviewVisible(() => false);
 
     setWorkInfoState((prev) => prev.filter((state) => state.id !== id));
+
     setTimeout(() => {
       setPreviewVisible(() => true);
     }, 1);

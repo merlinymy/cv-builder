@@ -147,6 +147,7 @@ function App() {
           setWorkInfoState={setWorkInfoState}
           workInfoFields={workInfoFields}
           setPreviewVisible={setPreviewVisible}
+          previewVisible={previewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <WorkExperience
@@ -155,6 +156,7 @@ function App() {
           setWorkInfoState={setprojectInfoState}
           workInfoFields={projectInfoFields}
           setPreviewVisible={setPreviewVisible}
+          previewVisible={previewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <Skills skills={skills} setSkills={setSkills}></Skills>
@@ -165,6 +167,7 @@ function App() {
           setWorkInfoState={setEducation}
           workInfoFields={educationFields}
           setPreviewVisible={setPreviewVisible}
+          previewVisible={previewVisible}
         ></WorkExperience>
         <Divider></Divider>
         <WorkExperience
@@ -173,6 +176,7 @@ function App() {
           setWorkInfoState={setCertification}
           workInfoFields={certificationFields}
           setPreviewVisible={setPreviewVisible}
+          previewVisible={previewVisible}
         ></WorkExperience>
         <Savebutton
           saveChanges={saveChanges}
